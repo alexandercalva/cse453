@@ -1,42 +1,42 @@
 import sqlite3
 
-# Función para generar la consulta SQL (vulnerable)
+# Function to create the SQL query (vulnerable)
 def generate_query(username, password):
     query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
     return query
 
-# Función para probar un caso
+# Function to test the different test cases
 def test_case(username, password):
     query = generate_query(username, password)
     print(f"Username: {username}, Password: {password}")
     print(f"Generated Query: {query}")
     print()
 
-# Función para tautology attack
+# Function for a tautology attack
 def tautology_attack(username, password):
     tautology_query = f"' OR '1'='1"
     test_case(username, tautology_query)
 
-# Función para union query attack
+# Function for a union query attack
 def union_query_attack(username, password):
     union_query = f"' UNION SELECT null, password FROM users--"
     test_case(username, union_query)
 
-# Función para additional statement attack
+# Function for a additional statement attack
 def additional_statement_attack(username, password):
     additional_statement_query = "'; DELETE FROM users--"
     test_case(username, additional_statement_query)
 
-# Función para comment attack
+# Function for a comment attack
 def comment_attack(username, password):
     comment_query = "' OR 1=1 --"
     test_case(username, comment_query)
 
-# Función para weak mitigation
+# Function for a weak mitigation
 def weak_mitigation(input_str):
     return input_str.replace("'", "''")
 
-# Función para strong mitigation (utilizando SQLite)
+# Function for a strong mitigation (utilizando SQLite)
 def strong_mitigation(username, password):
     connection = sqlite3.connect('my_database.db')
     cursor = connection.cursor()
@@ -55,7 +55,7 @@ def show_database():
     connection.close()
     return result
 
-# Función principal
+# Main function with menu
 def main():
     print("SQL Injection Testing Program")
     print("1. Test Valid Input")
