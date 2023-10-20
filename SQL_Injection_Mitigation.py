@@ -1,5 +1,14 @@
 import sqlite3
 
+# Valid test cases
+valid_tests = [
+    ["Emilio_Ordonez123","P@ssw0rd_456"],
+    ["Chandler_Wright456", "Ch@ndler_789"],
+    ["DylanRuppell_42","Dyl@n123_Rp"],
+    ["John_Stennett87","J0hnSt3nnet_!"],
+    ["Alex_Calva_555","Al3x_Calva_123"]
+]
+
 # Function to create the SQL query (vulnerable)
 def generate_query(username, password):
     query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
