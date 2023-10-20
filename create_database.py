@@ -13,6 +13,8 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS users (
 # Insertar algunos usuarios de ejemplo
 cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", ('alice', 'pass123'))
 cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", ('bob', 'securePwd'))
+cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", ('ricky', 'strongPass123'))
+cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", ('root', 'securePassword'))
 cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", ('alex', 'hola123'))
 cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", ('usuario', 'clave'))
 
