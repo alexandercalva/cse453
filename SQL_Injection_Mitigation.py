@@ -190,33 +190,31 @@ def displayMenu():
     print("8. Exit")
 
 # Main function with menu NEED TO CHANGE, NO INPUT IS NEEDED FOR ASSIGNMENT
+
 def main():
-    displayMenu()
-    choice = input("Select an option: ")
+    runing = True
+    choice = ''
 
-    while (choice != '8'):
-
-        if (choice == '1'):
-            testValid(genQuery)
-            print()
+    while runing:
+        displayMenu()
+        choice = input("Select an option: ")
+        match choice:
+            case '1':
+                testValid(genQuery)
+            case '2': 
+                testTautology(genQuery)
+            case '3':
+                testUnion(genQuery)
+            case '4':
+                testAddState(genQuery)
+            case '5':
+                testComment(genQuery)
+            case '6':
+               testValid(genQueryWeak)
+            case '7':
+                testValid(genQueryStrong)
+            case '8':
+                runing = False
         
-        elif (choice == '2'):
-            testTautology(genQuery)
-            print()
-        
-        elif (choice == '3'):
-            testUnion(genQuery)
-            print()
-
-        elif (choice == '4'):
-            testAddState(genQuery)
-            print()
-
-        elif (choice == '5'):
-            testComment(genQuery)
-            print()
-
-        choice = '8' # FOR TESTING PURPOSES
-
 if __name__ == "__main__":
     main()
