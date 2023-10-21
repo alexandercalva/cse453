@@ -9,6 +9,30 @@ valid_tests = [
     ["Alex_Calva_555","Al3x_Calva_123"]
 ]
 
+comment_attack_tests = [
+    # The first 3 tests assume the username is known
+    ["Emilio_Ordonez123'; -- ","doesntmatter"],
+    ["Chandler_Wright456'; -- ", "itsnullanyway"],
+    ["DylanRuppell_42'; -- ","nothingspecial"],
+    # This test will check to see if 'Admin' is a valid username
+    ["Admin'; -- ","thiswillbeignored"],
+    # This test will search for the Root user, part of all SQL databases
+    ["Root'; -- ","thanksfortheaccess"]
+]
+
+union_query_attack_tests = [
+    # Pull a list of passwords
+    ["Emilio_Ordonez123","password' UNION SELECT password FROM users"],
+    # Pull a list of usernames
+    ["Chandler_Wright456", "unimportant' UNION SELECT username FROM users"],
+    # Pull a list of usernames and passwords, put together for easier use
+    ["DylanRuppell_42","test' UNION SELECT concat(username, password) FROM users"],
+    # This Union Query would help the attacker identify the name of the database, which will aid in other attacks
+    ["John_Stennett87","weak' UNION SELECT schema_name FROM information_schema.schemata"],
+    # This Union Query would add a username and password to the database
+    ["Alex_Calva_555","helloworld' UNION INSERT INTO users (username, password) VALUES ('HackerUsername', 'HackedYou428!')"]
+]
+
 # Function to create the SQL query (vulnerable)
 def generate_query(username, password):
     query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
