@@ -50,7 +50,7 @@ def testAddState(function):
     
     # Additional statement cases [USERNAME, PASSWORD]
     add_statement_tests = [
-        ["Emilio_Ordonez123", "pass'; INSERT INTO users (username, password) VALUES 'Mike', '1234"]
+        ["Emilio_Ordonez123", "pass'; INSERT INTO users (username, password) VALUES 'Mike', '1234"],
         ["Chandler_Wright456","pass'; INSERT INTO users (username, password) VALUES 'Jason', '1234"],
         ["DylanRuppell_42", "pass'; DELETE users"],
         ["John_Stennet87", "pass'; DELETE users WHERE username = 'EmilioOrdonez123"],
