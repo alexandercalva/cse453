@@ -10,7 +10,7 @@ valid_tests = [
 ]
 
 comment_attack_tests = [
-    # The first 3 tests assume the username is known
+    # The first 3 tests assume the username is known by the attacker
     ["Emilio_Ordonez123'; -- ","doesntmatter"],
     ["Chandler_Wright456'; -- ", "itsnullanyway"],
     ["DylanRuppell_42'; -- ","nothingspecial"],
