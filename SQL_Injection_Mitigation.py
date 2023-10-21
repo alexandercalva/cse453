@@ -1,12 +1,30 @@
 import sqlite3
 
-# Valid test cases
+# Valid test cases [USERNAME, PASSWORD]
 valid_tests = [
     ["Emilio_Ordonez123","P@ssw0rd_456"],
     ["Chandler_Wright456", "Ch@ndler_789"],
     ["DylanRuppell_42","Dyl@n123_Rp"],
     ["John_Stennett87","J0hnSt3nnet_!"],
     ["Alex_Calva_555","Al3x_Calva_123"]
+]
+
+# Tautology test cases [USERNAME, PASSWORD]
+tautology_test = [
+    ["Emilio_Ordonez123' OR '1'='1","P@ssw0rd_456"],
+    ["Chandler_Wright456' OR 'x'='x","Ch@ndler_789"],
+    ["DylanRuppell_42' OR 'a'='a","Dyl@n123_Rp"],
+    ["John_Stennett87","' OR '2'='2"],
+    ["Alex_Calva_555","' OR 'x'='x"]
+]
+
+# Additional statement cases [USERNAME, PASSWORD]
+add_statement_tests = [
+    ["Emilio_Ordonez123", "pass'; INSERT INTO users (username, password) VALUES 'Mike', '1234"]
+    ["Chandler_Wright456","pass'; INSERT INTO users (username, password) VALUES 'Jason', '1234"],
+    ["DylanRuppell_42", "pass'; DELETE users"],
+    ["John_Stennet87", "pass'; DELETE users WHERE username = 'EmilioOrdonez123"],
+    ["Alex_Calva_555", "pass'; DELETE users WHERE username = 'DylanRuppell_42"]
 ]
 
 comment_attack_tests = [
