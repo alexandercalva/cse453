@@ -117,41 +117,10 @@ def testUnion(function):
         print(f'RESULTING QUERY: {query}\n')
         counter += 1
 
-
 # Function to create the SQL query (vulnerable)
 def genQuery(username, password):
     query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}';"
     return query
-
-# Don't think we need this.
-'''
-# Function to test the different test cases
-def test_case(username, password):
-    query = genQuery(username, password)
-    print(f"Username: {username}, Password: {password}")
-    print(f"Generated Query: {query}")
-    print()
-
-# Function for a tautology attack
-def tautology_attack(username, password):
-    tautology_query = f"' OR '1'='1"
-    test_case(username, tautology_query)
-
-# Function for a union query attack
-def union_query_attack(username, password):
-    union_query = f"' UNION SELECT null, password FROM users--"
-    test_case(username, union_query)
-
-# Function for a additional statement attack
-def additional_statement_attack(username, password):
-    additional_statement_query = "'; DELETE FROM users--"
-    test_case(username, additional_statement_query)
-
-# Function for a comment attack
-def comment_attack(username, password):
-    comment_query = "' OR 1=1 --"
-    test_case(username, comment_query)
-'''
 
 # Function for a weak mitigation
 def genQueryWeak(username, password):
@@ -161,23 +130,27 @@ def genQueryWeak(username, password):
 
 # Function for a strong mitigation (utilizando SQLite)
 def genQueryStrong(username, password):
-    connection = sqlite3.connect('my_database.db')
-    cursor = connection.cursor()
-    
-    cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
-    result = cursor.fetchone()
-    
-    connection.close()
-    return result
+    username = username.replace("'", "''")
+    password = password.replace("'", "''")
+    return genQuery(username, password)
 
-def show_database():
-    connection = sqlite3.connect('my_database.db')
-    cursor = connection.cursor()
+#     connection = sqlite3.connect('my_database.db')
+#     cursor = connection.cursor()
     
-    cursor.execute("SELECT * FROM users")
-    result = cursor.fetchall()
-    connection.close()
-    return result
+#     cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
+#     result = cursor.fetchone()
+    
+#     connection.close()
+#     return result
+
+# def show_database():
+#     connection = sqlite3.connect('my_database.db')
+#     cursor = connection.cursor()
+    
+#     cursor.execute("SELECT * FROM users")
+#     result = cursor.fetchall()
+#     connection.close()
+#     return result
 
 def displayMenu():
     print("SQL Injection Mitigation Lab")
@@ -190,8 +163,7 @@ def displayMenu():
     print("7. Strong Mitigation Function")
     print("8. Exit")
 
-# Main function with menu NEED TO CHANGE, NO INPUT IS NEEDED FOR ASSIGNMENT
-
+# Main function with menu
 def main():
     while True:
         displayMenu()
