@@ -1,5 +1,6 @@
 import sqlite3
 import os
+import re
 
 def testValid(function):
     '''Runs a set of test cases that represents valid input through the function passed as parameter.'''
@@ -124,9 +125,20 @@ def genQuery(username, password):
 
 # Function for a weak mitigation
 def genQueryWeak(username, password):
-    username = username.replace("'", "''")
-    password = password.replace("'", "''")
-    return genQuery(username, password)
+    union_pattern = "[Uu][Nn][Ii][Oo][Nn]"
+    additional_statement_pattern = ";"
+    comment_pattern = "--"
+    quote_pattern = "[\'\"]"
+
+    username = re.sub(union_pattern, "", username)
+    username = re.sub(additional_statement_pattern, "", username)
+    username = re.sub(comment_pattern, "", username)
+    username = re.sub(quote_pattern, "", username)
+
+    password = re.sub(union_pattern, "", password)
+    password = re.sub(additional_statement_pattern, "", password)
+    password = re.sub(comment_pattern, "", password)
+    password = re.sub(quote_pattern, "", password)
 
 # Function for a strong mitigation (utilizando SQLite)
 def genQueryStrong(username, password):
