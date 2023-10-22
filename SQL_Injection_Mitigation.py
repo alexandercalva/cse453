@@ -142,8 +142,10 @@ def genQueryWeak(username, password):
 
 # Function for a strong mitigation 
 def genQueryStrong(username, password):
-    username = username.replace("'", "''")
-    password = password.replace("'", "''")
+    whitelist_pattern = "[^\w\^\[\]\\~`!@#$%&*()+={}|:<>,.?/]"
+
+    username = re.sub(whitelist_pattern, "", username)
+    password = re.sub(whitelist_pattern, "", password)
     return genQuery(username, password)
 
 # Menu options for the main function
