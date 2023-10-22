@@ -182,11 +182,16 @@ def main():
             case '6':
                 testValid(genQueryWeak)
                 testTautology(genQueryWeak)
+                testUnion(genQueryWeak)
                 testAddState(genQueryWeak)
                 testComment(genQueryWeak)
-                testUnion(genQueryWeak)
             case '7':
                 testValid(genQueryStrong)
+                testTautology(genQueryStrong)
+                testUnion(genQueryStrong)
+                testAddState(genQueryStrong)
+                testComment(genQueryStrong)
+
             case '8':
                 break
         
