@@ -140,30 +140,15 @@ def genQueryWeak(username, password):
     password = re.sub(comment_pattern, "", password)
     password = re.sub(quote_pattern, "", password)
 
-# Function for a strong mitigation (utilizando SQLite)
+    return genQuery(username, password)
+
+# Function for a strong mitigation 
 def genQueryStrong(username, password):
     username = username.replace("'", "''")
     password = password.replace("'", "''")
     return genQuery(username, password)
 
-#     connection = sqlite3.connect('my_database.db')
-#     cursor = connection.cursor()
-    
-#     cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
-#     result = cursor.fetchone()
-    
-#     connection.close()
-#     return result
-
-# def show_database():
-#     connection = sqlite3.connect('my_database.db')
-#     cursor = connection.cursor()
-    
-#     cursor.execute("SELECT * FROM users")
-#     result = cursor.fetchall()
-#     connection.close()
-#     return result
-
+# Menu options for the main function
 def displayMenu():
     print("SQL Injection Mitigation Lab")
     print("1. Test Valid Input Test Cases")
@@ -203,7 +188,6 @@ def main():
                 testUnion(genQueryStrong)
                 testAddState(genQueryStrong)
                 testComment(genQueryStrong)
-
             case '8':
                 break
         
