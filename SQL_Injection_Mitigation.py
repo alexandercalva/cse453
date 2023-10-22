@@ -1,5 +1,3 @@
-import sqlite3
-import os
 import re
 
 def testValid(function):
