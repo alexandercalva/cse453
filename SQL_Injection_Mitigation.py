@@ -120,7 +120,7 @@ def testUnion(function):
 
 # Function to create the SQL query (vulnerable)
 def genQuery(username, password):
-    query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+    query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}';"
     return query
 
 # Don't think we need this.
@@ -154,8 +154,10 @@ def comment_attack(username, password):
 '''
 
 # Function for a weak mitigation
-def genQueryWeak(input_str):
-    return input_str.replace("'", "''")
+def genQueryWeak(username, password):
+    username = username.replace("'", "''")
+    password = password.replace("'", "''")
+    return genQuery(username, password)
 
 # Function for a strong mitigation (utilizando SQLite)
 def genQueryStrong(username, password):
@@ -178,7 +180,6 @@ def show_database():
     return result
 
 def displayMenu():
-    os.system('cls')
     print("SQL Injection Mitigation Lab")
     print("1. Test Valid Input Test Cases")
     print("2. Tautology Attack Test Cases")
@@ -192,10 +193,7 @@ def displayMenu():
 # Main function with menu NEED TO CHANGE, NO INPUT IS NEEDED FOR ASSIGNMENT
 
 def main():
-    runing = True
-    choice = ''
-
-    while runing:
+    while True:
         displayMenu()
         choice = input("Select an option: ")
         match choice:
@@ -210,11 +208,15 @@ def main():
             case '5':
                 testComment(genQuery)
             case '6':
-               testValid(genQueryWeak)
+                testValid(genQueryWeak)
+                testTautology(genQueryWeak)
+                testAddState(genQueryWeak)
+                testComment(genQueryWeak)
+                testUnion(genQueryWeak)
             case '7':
                 testValid(genQueryStrong)
             case '8':
-                runing = False
+                break
         
 if __name__ == "__main__":
     main()
