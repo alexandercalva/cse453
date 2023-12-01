@@ -8,3 +8,20 @@
 ########################################################################
 
 # you may need to put something here...
+
+from enum import Enum
+
+class Control(Enum):
+    Public = 0
+    Confidential = 1
+    Privileged = 2
+    Secret = 3
+
+userPermissions = { 
+    "AdmiralAbe": Control.Secret,
+    "CaptainCharlie": Control.Privileged,
+    "SeamanSam": Control.Confidential,
+    "SeamanSue": Control.Confidential,
+    "SeamanSly": Control.Confidential,
+    "Others": Control.Public
+}
