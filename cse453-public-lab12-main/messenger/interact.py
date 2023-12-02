@@ -2,7 +2,7 @@
 # COMPONENT:
 #    INTERACT
 # Author:
-#    Br. Helfrich, Kyle Mueller, <your name here if you made a change>
+#    Br. Helfrich, Kyle Mueller, Emilio Ordonez, Chandler Wright
 # Summary: 
 #    This class allows one user to interact with the system
 ########################################################################
@@ -75,7 +75,8 @@ class Interact:
     def add(self):
         self._p_messages.add(self._prompt_for_line("message"),
                              self._username,
-                             self._prompt_for_line("date"))
+                             self._prompt_for_line("date"),
+                             self._prompt_for_access_control())
 
     ##################################################
     # INTERACT :: UPDATE
@@ -95,6 +96,33 @@ class Interact:
     ################################################## 
     def remove(self):
         self._p_messages.remove(self._prompt_for_id("delete"))
+
+    ##################################################
+    # INTERACT :: PROMPT FOR ACCESS CONTROL
+    # Prompt for the access control
+    ################################################## 
+    def _prompt_for_access_control(self):
+        print('Access control levels are as follows:')
+        print('1: Public')
+        print('2: Confidential')
+        print('3: Privileged')
+        print('4: Secret')
+
+        choice = int(input('Enter the desired access control level number: '))
+        
+        while self.control.value < choice-1:
+            print('Your clearance leve is too high, please select one equal to or higher.')
+            choice = int(input('Enter the desired access control level number: '))
+
+        match choice:
+            case 1:
+                return control.Control.Public
+            case 2:
+                return control.Control.Confidential
+            case 3:
+                return control.Control.Privileged
+            case 4:
+                return control.Control.Secret
 
     ##################################################
     # INTERACT :: PROMPT FOR LINE
