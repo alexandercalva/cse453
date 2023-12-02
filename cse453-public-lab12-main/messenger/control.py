@@ -16,12 +16,3 @@ class Control(Enum):
     Confidential = 1
     Privileged = 2
     Secret = 3
-
-userPermissions = { 
-    "AdmiralAbe": Control.Secret,
-    "CaptainCharlie": Control.Privileged,
-    "SeamanSam": Control.Confidential,
-    "SeamanSue": Control.Confidential,
-    "SeamanSly": Control.Confidential,
-    "Others": Control.Public
-}

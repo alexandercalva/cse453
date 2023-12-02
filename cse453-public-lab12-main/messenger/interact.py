@@ -14,16 +14,17 @@ import messages, control
 # User has a name and a password
 ###############################################################
 class User:
-    def __init__(self, name, password):
+    def __init__(self, name, password, control):
         self.name = name
         self.password = password
+        self.control = control
 
 userlist = [
-   [ "AdmiralAbe",     "password" ],  
-   [ "CaptainCharlie", "password" ], 
-   [ "SeamanSam",      "password" ],
-   [ "SeamanSue",      "password" ],
-   [ "SeamanSly",      "password" ]
+   [ "AdmiralAbe",     "password", control.Control.Secret ],  
+   [ "CaptainCharlie", "password", control.Control.Privileged ], 
+   [ "SeamanSam",      "password", control.Control.Confidential ],
+   [ "SeamanSue",      "password", control.Control.Confidential ],
+   [ "SeamanSly",      "password", control.Control.Confidential ]
 ]
 
 ###############################################################

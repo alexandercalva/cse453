@@ -77,6 +77,15 @@ class Messages:
             with open(filename, "r") as f:
                 for line in f:
                     text_control, author, date, text = line.split('|')
+                    match text_control:
+                        case "Secret":
+                            text_control = control.Control.Secret
+                        case "Confidential":
+                            text_control = control.Control.Confidential
+                        case "Public":
+                            text_control = control.Control.Public
+                        case "Priviliged":
+                            text_control = control.Control.Privileged
                     self.add(text.rstrip('\r\n'), author, date, text_control)
 
         except FileNotFoundError:
