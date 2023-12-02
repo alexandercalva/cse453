@@ -146,7 +146,7 @@ class Interact:
         id_ = self._id_from_user(username)
 
         if id_ == -1:
-            print('User is not in user list. You have been given public account access.')
+            print('\nUsername is not on the user list. You have been given public account access.')
             self.control = control.Control.Public
             return
         else:
