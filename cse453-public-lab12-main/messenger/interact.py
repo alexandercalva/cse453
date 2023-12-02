@@ -85,7 +85,7 @@ class Interact:
     def update(self):
         id_ = self._prompt_for_id("update")
         self._p_messages.show(id_,self.control.value)
-        self._p_messages.update(id_, self._prompt_for_line("message"))
+        self._p_messages.update(id_, self.control.value, self._prompt_for_line("message"))
         print()
             
     ##################################################

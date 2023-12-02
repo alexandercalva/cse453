@@ -55,10 +55,13 @@ class Messages:
     # MESSAGES :: UPDATE
     # Update a single message
     ################################################## 
-    def update(self, id, text):
+    def update(self, id, userControlLevel, text):
         for m in self._messages:
             if m.get_id() == id:
-                m.update_text(text)
+                if userControlLevel <= m._text_control.value:
+                    m.update_text(text)
+                else:
+                    print("Your clearance is too high to write to this message.")
 
     ##################################################
     # MESSAGES :: REMOVE
