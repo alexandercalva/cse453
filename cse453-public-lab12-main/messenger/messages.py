@@ -46,10 +46,10 @@ class Messages:
                     m.display_text()
 
         if doesNotExist:
-            print('Message doesnt exist')
+            print('Message doesnt exist.')
             existsNotCleared = False
         if existsNotCleared:
-            print('You do not have cleareance')
+            print('You do not have cleareance to read.')
 
     ##################################################
     # MESSAGES :: UPDATE

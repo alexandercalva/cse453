@@ -84,9 +84,7 @@ class Interact:
     ################################################## 
     def update(self):
         id_ = self._prompt_for_id("update")
-        if not self._p_messages.show(id_):
-            print(f"ERROR! Message ID \'{id_}\' does not exist\n")
-            return
+        self._p_messages.show(id_,self.control.value)
         self._p_messages.update(id_, self._prompt_for_line("message"))
         print()
             
@@ -110,8 +108,10 @@ class Interact:
 
         choice = int(input('Enter the desired access control level number: '))
         
-        while self.control.value < choice-1:
-            print('Your clearance leve is too high, please select one equal to or higher.')
+        # SOMEONE VALIDATE CHOICE
+
+        while self.control.value > choice-1:
+            print('Your clearance level is too high, please select one equal to or higher.')
             choice = int(input('Enter the desired access control level number: '))
 
         match choice:
