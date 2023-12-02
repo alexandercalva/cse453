@@ -35,12 +35,21 @@ class Messages:
     # MESSAGES :: SHOW
     # Show a single message
     ################################################## 
-    def show(self, id):
+    def show(self, id, userControlLevel):
+        doesNotExist = True
+        existsNotCleared = True
         for m in self._messages:
             if m.get_id() == id:
-                m.display_text()
-                return True
-        return False
+                doesNotExist = False
+                if userControlLevel >= m._text_control.value:
+                    existsNotCleared = False
+                    m.display_text()
+
+        if doesNotExist:
+            print('Message doesnt exist')
+            existsNotCleared = False
+        if existsNotCleared:
+            print('You do not have cleareance')
 
     ##################################################
     # MESSAGES :: UPDATE
@@ -84,7 +93,7 @@ class Messages:
                             text_control = control.Control.Confidential
                         case "Public":
                             text_control = control.Control.Public
-                        case "Priviliged":
+                        case "Privileged":
                             text_control = control.Control.Privileged
                     self.add(text.rstrip('\r\n'), author, date, text_control)
 
