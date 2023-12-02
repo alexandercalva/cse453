@@ -64,8 +64,8 @@ class Messages:
     # MESSAGES :: ADD
     # Add a new message
     ################################################## 
-    def add(self, text, author, date):
-        m = message.Message(text, author, date)
+    def add(self, text, author, date, text_control):
+        m = message.Message(text, author, date, text_control)
         self._messages.append(m)
 
     ##################################################
@@ -77,7 +77,7 @@ class Messages:
             with open(filename, "r") as f:
                 for line in f:
                     text_control, author, date, text = line.split('|')
-                    self.add(text.rstrip('\r\n'), author, date)
+                    self.add(text.rstrip('\r\n'), author, date, text_control)
 
         except FileNotFoundError:
             print(f"ERROR! Unable to open file \"{filename}\"")
