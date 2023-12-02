@@ -110,7 +110,7 @@ class Interact:
         
         # SOMEONE VALIDATE CHOICE
 
-        while self.control.value > choice-1:
+        while not control.writeAccess(self.control.value, choice-1):
             print('Your clearance level is too high, please select one equal to or higher.')
             choice = int(input('Enter the desired access control level number: '))
 

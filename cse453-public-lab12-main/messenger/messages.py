@@ -1,11 +1,11 @@
-########################################################################
+################################################################################
 # COMPONENT:
 #    MESSAGES
 # Author:
-#    Br. Helfrich, Kyle Mueller, <your name here if you made a change>
+#    Br. Helfrich, Kyle Mueller, Emilio Ordonez, Chandler Wright, John Stennett
 # Summary: 
 #    This class stores the notion of a collection of messages
-########################################################################
+################################################################################
 
 import control, message
 
@@ -41,7 +41,7 @@ class Messages:
         for m in self._messages:
             if m.get_id() == id:
                 doesNotExist = False
-                if userControlLevel >= m._text_control.value:
+                if control.readAccess(userControlLevel, m._text_control.value):
                     existsNotCleared = False
                     m.display_text()
 
@@ -58,7 +58,7 @@ class Messages:
     def update(self, id, userControlLevel, text):
         for m in self._messages:
             if m.get_id() == id:
-                if userControlLevel <= m._text_control.value:
+                if control.writeAccess(userControlLevel, m._text_control.value):
                     m.update_text(text)
                 else:
                     print("Your clearance is too high to write to this message.")
@@ -70,7 +70,7 @@ class Messages:
     def remove(self, id, userControlLevel):
         for m in self._messages:
             if m.get_id() == id:
-                if userControlLevel >= m._text_control.value:
+                if control.readAccess(userControlLevel, m._text_control.value):
                     m.clear()
                 else:
                     print('You do not have clearance to delete this message.')

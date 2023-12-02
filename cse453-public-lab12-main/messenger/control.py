@@ -2,7 +2,7 @@
 # COMPONENT:
 #    CONTROL
 # Author:
-#    Br. Helfrich, Kyle Mueller, <your name here if you made a change>
+#    Br. Helfrich, Kyle Mueller, Chandler Wright
 # Summary: 
 #    This class stores the notion of Bell-LaPadula
 ########################################################################
@@ -16,3 +16,15 @@ class Control(Enum):
     Confidential = 1
     Privileged = 2
     Secret = 3
+
+def readAccess(user_control_level, message_control_level):
+    if user_control_level >= message_control_level:
+        return True
+    else:
+        return False
+
+def writeAccess(user_control_level, message_control_level):
+    if user_control_level <= message_control_level:
+        return True
+    else:
+        return False

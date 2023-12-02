@@ -2,12 +2,10 @@
 # COMPONENT:
 #    MESSAGE
 # Author:
-#    Br. Helfrich, Kyle Mueller, <your name here if you made a change>
+#    Br. Helfrich, Kyle Mueller, John Stennett, Emilio Ordonez
 # Summary: 
 #    This class stores the notion of a message
 ########################################################################
-
-import control
 
 ##################################################
 # MESSAGE
