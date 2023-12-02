@@ -117,7 +117,19 @@ class Interact:
     ################################################## 
     def _authenticate(self, username, password):
         id_ = self._id_from_user(username)
-        return ID_INVALID != id_ and password == users[id_].password
+
+        if id_ == -1:
+            print('User is not in user list. You have been given public account access.')
+            self.control = control.Control.Public
+            return
+        else:
+            if password == users[id_].password:
+                self.control = users[id_].control
+            else:
+                print('User is in user list, but the password is incorrect. You have been given public account access.')
+                print('Restart the program to try again.')
+                self.control = control.Control.Public
+            return
 
     ##################################################
     # INTERACT :: ID FROM USER
