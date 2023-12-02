@@ -49,7 +49,7 @@ class Messages:
             print('Message doesnt exist.')
             existsNotCleared = False
         if existsNotCleared:
-            print('You do not have cleareance to read.')
+            print('You do not have clearance to read.')
 
     ##################################################
     # MESSAGES :: UPDATE
@@ -64,10 +64,13 @@ class Messages:
     # MESSAGES :: REMOVE
     # Remove a single message
     ################################################## 
-    def remove(self, id):
+    def remove(self, id, userControlLevel):
         for m in self._messages:
             if m.get_id() == id:
-                m.clear()
+                if userControlLevel >= m._text_control.value:
+                    m.clear()
+                else:
+                    print('You do not have clearance to delete this message.')
 
     ##################################################
     # MESSAGES :: ADD

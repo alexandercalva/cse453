@@ -93,7 +93,7 @@ class Interact:
     # Remove one message from the list
     ################################################## 
     def remove(self):
-        self._p_messages.remove(self._prompt_for_id("delete"))
+        self._p_messages.remove(self._prompt_for_id("delete"),self.control.value)
 
     ##################################################
     # INTERACT :: PROMPT FOR ACCESS CONTROL
