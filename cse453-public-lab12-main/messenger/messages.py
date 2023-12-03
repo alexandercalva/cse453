@@ -49,7 +49,7 @@ class Messages:
             print('Message doesnt exist.')
             existsNotCleared = False
         if existsNotCleared:
-            print('You do not have clearance to read.')
+            print('You do not have a high enough clearance to read this message.')
 
     ##################################################
     # MESSAGES :: UPDATE
