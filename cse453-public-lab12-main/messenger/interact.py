@@ -109,12 +109,15 @@ class Interact:
 
             try:
                 choice = int(input('Enter the desired access control level number: '))
+
+                # settle the off-by-one error between menu options and control-level enumeration
+                choice -= 1
             except ValueError:
                 print('That is not a valid menu option, please only enter the number for the desired menu option.')
                 print()
                 continue
             
-            if not control.writeAccess(self.control.value, choice - 1):
+            if not control.writeAccess(self.control.value, choice):
                 print('To prevent unauthorized disclosure of classified information, it is forbidden to add messages of a security level lower than your own. Please select a higher security level.')
                 print()
                 continue
