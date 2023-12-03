@@ -10,7 +10,8 @@
  
  ######################################################
 # Control Enum
-# This Enum controls the different access levels for both users and messages
+# This Enum controls the different access levels for both
+# users and messages and provides an integer value for them.
 ######################################################
 
 from enum import Enum
