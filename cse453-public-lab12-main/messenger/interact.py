@@ -100,29 +100,62 @@ class Interact:
     # Prompt for the access control
     ################################################## 
     def _prompt_for_access_control(self):
-        print('Access control levels are as follows:')
-        print('1: Public')
-        print('2: Confidential')
-        print('3: Privileged')
-        print('4: Secret')
+        # print('Access control levels are as follows:')
+        # print('1: Public')
+        # print('2: Confidential')
+        # print('3: Privileged')
+        # print('4: Secret')
 
-        choice = int(input('Enter the desired access control level number: '))
+        # choice = int(input('Enter the desired access control level number: '))
         
-        # SOMEONE VALIDATE CHOICE
+        # # SOMEONE VALIDATE CHOICE
 
-        while self.control.value > choice-1:
-            print('Your clearance level is too high, please select one equal to or higher.')
-            choice = int(input('Enter the desired access control level number: '))
+        # while self.control.value > choice-1:
+        #     print('Your clearance level is too high, please select one equal to or higher.')
+        #     choice = int(input('Enter the desired access control level number: '))
 
-        match choice:
-            case 1:
-                return control.Control.Public
-            case 2:
-                return control.Control.Confidential
-            case 3:
-                return control.Control.Privileged
-            case 4:
-                return control.Control.Secret
+        # match choice:
+        #     case 1:
+        #         return control.Control.Public
+        #     case 2:
+        #         return control.Control.Confidential
+        #     case 3:
+        #         return control.Control.Privileged
+        #     case 4:
+        #         return control.Control.Secret    
+
+        while True:
+            print('Access control levels are as follows:')
+            print('1: Public')
+            print('2: Confidential')
+            print('3: Privileged')
+            print('4: Secret')
+
+            try:
+                choice = int(input('Enter the desired access control level number: '))
+            except ValueError:
+                print('That is not a valid menu option, please only enter the number for the desired menu option.')
+                print()
+                continue
+            
+            if self.control.value >= choice:
+                print('To prevent unauthorized disclosure of classified information, it is forbidden to add messages of a security level lower than your own. Please select a higher security level.')
+                print()
+                continue
+
+            match choice:
+                case 1:
+                    return control.Control.Public
+                case 2:
+                    return control.Control.Confidential
+                case 3:
+                    return control.Control.Privileged
+                case 4:
+                    return control.Control.Secret
+                case _:
+                    print('That is not a valid menu option, please enter a number that represents a valid menu option.')
+                    print()
+                    continue
 
     ##################################################
     # INTERACT :: PROMPT FOR LINE
