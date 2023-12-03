@@ -11,7 +11,7 @@ import messages, control
 
 ###############################################################
 # USER
-# User has a name and a password
+# User has a name, password, and a control level
 ###############################################################
 class User:
     def __init__(self, name, password, control):
