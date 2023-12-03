@@ -2,7 +2,7 @@
 # COMPONENT:
 #    INTERACT
 # Author:
-#    Br. Helfrich, Kyle Mueller, Emilio Ordonez, Chandler Wright
+#    Br. Helfrich, Kyle Mueller, Emilio Ordonez, Chandler Wright, John Stennett
 # Summary: 
 #    This class allows one user to interact with the system
 ########################################################################
@@ -100,30 +100,6 @@ class Interact:
     # Prompt for the access control
     ################################################## 
     def _prompt_for_access_control(self):
-        # print('Access control levels are as follows:')
-        # print('1: Public')
-        # print('2: Confidential')
-        # print('3: Privileged')
-        # print('4: Secret')
-
-        # choice = int(input('Enter the desired access control level number: '))
-        
-        # # SOMEONE VALIDATE CHOICE
-
-        # while self.control.value > choice-1:
-        #     print('Your clearance level is too high, please select one equal to or higher.')
-        #     choice = int(input('Enter the desired access control level number: '))
-
-        # match choice:
-        #     case 1:
-        #         return control.Control.Public
-        #     case 2:
-        #         return control.Control.Confidential
-        #     case 3:
-        #         return control.Control.Privileged
-        #     case 4:
-        #         return control.Control.Secret    
-
         while True:
             print('Access control levels are as follows:')
             print('1: Public')
@@ -138,7 +114,7 @@ class Interact:
                 print()
                 continue
             
-            if self.control.value >= choice:
+            if not control.writeAccess(self.control.value, choice - 1):
                 print('To prevent unauthorized disclosure of classified information, it is forbidden to add messages of a security level lower than your own. Please select a higher security level.')
                 print()
                 continue
