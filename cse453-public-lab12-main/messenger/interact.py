@@ -123,13 +123,13 @@ class Interact:
                 continue
 
             match choice:
-                case 1:
+                case 0:
                     return control.Control.Public
-                case 2:
+                case 1:
                     return control.Control.Confidential
-                case 3:
+                case 2:
                     return control.Control.Privileged
-                case 4:
+                case 3:
                     return control.Control.Secret
                 case _:
                     print('That is not a valid menu option, please enter a number that represents a valid menu option.')
